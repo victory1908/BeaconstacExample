@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +45,7 @@ public class MainActivity extends Activity {
     private BeaconAdapter beaconAdapter;
     private TextView bCount;
     private TextView testCamped;
+    private Button checkIn;
     Beaconstac bstacInstance;
 
     private BluetoothAdapter mBluetoothAdapter;
@@ -128,7 +130,12 @@ public class MainActivity extends Activity {
                 e.printStackTrace();
             }
         }
+
+
+
     }
+
+    // end oncreate
 
     private void initList() {
         ListView beaconList = (ListView) findViewById(R.id.beaconListView);
@@ -263,6 +270,11 @@ public class MainActivity extends Activity {
             bCount.setText("" + rangedBeacons.size());
             beacons.addAll(rangedBeacons);
             beaconAdapter.notifyDataSetChanged();
+
+            Toast.makeText(MainActivity.this, "Scanning for beacon", Toast.LENGTH_SHORT).show();
+            Button checkIn = (Button) findViewById(R.id.Check_in);
+            checkIn.setVisibility(View.VISIBLE);
+
         }
 
         @Override
